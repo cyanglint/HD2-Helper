@@ -1,7 +1,6 @@
-<img src="https://github.com/user-attachments/assets/b32b9042-4096-4000-9389-c19fb5765bcb" />
-<img src="https://github.com/user-attachments/assets/0d9fa2f4-8d94-4a2c-849e-8ce88143f07c" />
-<img src="https://github.com/user-attachments/assets/43115318-c97b-4ec8-9533-2129bb908743" />
-<img src="https://github.com/user-attachments/assets/272cf112-5a7d-4993-b402-f915e1b2f749" />
+<img src="https://github.com/user-attachments/assets/3384471b-1ba8-4e44-99de-7250e3e6e3ec" />
+<img src="https://github.com/user-attachments/assets/543e33a2-fead-42f9-9d34-a3abf014b862" />
+<img src="https://github.com/user-attachments/assets/4e7cbd90-dd1e-4e79-8ce9-7b336592eb8c" />
 
 ## 헬다이버즈2 보조 기구
 * **스트라타젬 단축키 자동 인식**<br>게임 설정 파일 `input_settings.config` 기반으로 작동하여 별도의 초기 설정이 필요 없습니다.
@@ -11,10 +10,8 @@
 * **패드 지원**<br>`XBOX` / `PS` 외에도 다양한 패드를 지원하여, 단축키 등록이 가능합니다.
 
 * **로드아웃 & 스트라타젬 자동 선택**<br>게임 내 장비구성 메뉴에서 단축키 한 번으로 설정된 항목들을 자동으로 선택합니다.<br>
-`텍스트 언어 설정은 한국어만 지원하며, 보유하지 않은 장비 및 스트라타젬은 우클릭으로 제외해야 정상 작동합니다.`
-
-* **랜덤 로드아웃**<br>`로드아웃` / `스트라타젬` 버튼을 우클릭 시 랜덤으로 선택합니다.<br>
-배낭, 엑소슈트 중복 선택되지 않습니다.
+`텍스트 언어 설정은 한국어만 지원하며, 폰트 변경 모드 사용 시 정상 작동하지 않을 수 있습니다.`<br>
+`보유하지 않은 장비 및 스트라타젬은 우클릭으로 제외해야 정상 작동합니다.`
 
 * **라디얼 오버레이**<br>게임 내 오버레이로 직관적인 스트라타젬 선택이 가능합니다.
 
@@ -24,13 +21,33 @@
 캐릭터 안 움직이거나 한글 입력 안될 경우 `ESC` / `발사` / `조준` 버튼으로 상태 초기화가 필요합니다.<br>
 패드 연결 시에는 한글 채팅 비활성화 됩니다.
 
-* [보조 기구 장착하기 (Download)](https://github.com/ChubbyMaru/HD2-Helper/releases/latest)
+* [보조 기구 장착하기](https://github.com/ChubbyMaru/HD2-Helper/releases/latest)<br>
+[![GitHub Downloads](https://img.shields.io/github/downloads/ChubbyMaru/HD2-Helper/total?style=flat-square)](#)
 
-## 단축키 기본 값
+## 단축키 기본 설정값
 * **자동선택 :** `F1`
 * **오버레이 :** `마우스 휠 클릭`
 * **증원 :** `마우스 버튼1(뒤로 가기)`
-* **슬롯 단축키 :** `없음`
+* **슬롯 :** `설정 필요`
+
+## 프로그램 특수 조작
+* **스트라타젬/장비 슬롯**<br>
+우클릭 : `선택 해제`<br>
+드래그 : `슬롯 변경(스트라타젬 전용)`
+
+* **아이템 선택 목록**<br>
+우클릭 : `아이템 제외` / `제외 해제`
+
+* **프리셋**<br>
+우클릭 : `삭제`<br>
+더블클릭 : `이름 변경`<br>
+드래그 : `순서 변경`<br>
+휠 : `스크롤`
+
+* **프로그램 설정**<br>
+단축키 입력 대기 중 우클릭 : `단축키 해제`<br>
+입력 딜레이 좌클릭 : `+5ms`<br>
+입력 딜레이 우클릭 : `-5ms`
 
 ## 개발자 정보
 * **디스코드 :** `9p._.`<br>
