@@ -1,0 +1,25 @@
+bin/
+obj/
+
+# User-specific IDE files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+
+# Build and publish outputs
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Pp]ublish/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+
+# OS files
+Thumbs.db
+Desktop.ini

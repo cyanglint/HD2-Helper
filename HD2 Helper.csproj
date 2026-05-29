@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows10.0.17763.0</TargetFramework>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<NoWarn>$(NoWarn);MSB3277</NoWarn>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<ApplicationIcon>icon.ico</ApplicationIcon>
+
+		<PublishSingleFile>true</PublishSingleFile>
+		<SelfContained>true</SelfContained>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+		<PublishReferencesDocumentationFiles>false</PublishReferencesDocumentationFiles>
+
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<Version>2.0.5</Version>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="index.html" />
+		<Content Include="icon.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3967.48" />
+		<PackageReference Include="ppy.SDL2-CS" Version="1.0.82" ExcludeAssets="ContentFiles" />
+	</ItemGroup>
+</Project>
