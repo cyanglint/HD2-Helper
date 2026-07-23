@@ -327,9 +327,29 @@ namespace HD2_Helper
                     if (File.Exists(loginUsersPath))
                     {
                         string vdf = File.ReadAllText(loginUsersPath);
-                        var steamMatch = Regex.Match(vdf, "\"(\\d{17})\"\\s*\\{[^}]*\"MostRecent\"\\s*\"1\"", RegexOptions.Singleline);
+                        // 로그인 사용자 블록을 모두 추출하고 우선순위로 계정을 선택함
+                        var userMatches = Regex.Matches(vdf, "\"(\\d{17})\"\\s*\\{([\\s\\S]*?)\\}", RegexOptions.Singleline);
+                        string? chosenIdStr = null;
+                        long bestTs = 0;
 
-                        if (steamMatch.Success && long.TryParse(steamMatch.Groups[1].Value, out long id64))
+                        foreach (Match m in userMatches)
+                        {
+                            string id = m.Groups[1].Value;
+                            string body = m.Groups[2].Value;
+
+                            // MostRecent 우선, 그 다음 AutoLogin, 마지막으로 가장 최신 Timestamp
+                            if (Regex.IsMatch(body, "\"MostRecent\"\\s*\"1\"")) { chosenIdStr = id; break; }
+                            if (Regex.IsMatch(body, "\"AutoLogin\"\\s*\"1\"")) { chosenIdStr = id; break; }
+
+                            var tsMatch = Regex.Match(body, "\"Timestamp\"\\s*\"(\\d+)\"");
+                            if (tsMatch.Success && long.TryParse(tsMatch.Groups[1].Value, out long ts) && ts > bestTs)
+                            {
+                                bestTs = ts;
+                                chosenIdStr = id;
+                            }
+                        }
+
+                        if (chosenIdStr != null && long.TryParse(chosenIdStr, out long id64))
                         {
                             string steamID3 = (id64 - 76561197960265728).ToString();
                             string steamCloudPath = Path.Combine(steamPath, "userdata", steamID3, "553850", "remote", "input_settings.config");
@@ -2754,8 +2774,10 @@ namespace HD2_Helper
             {
                 keyboardProc = KeyboardHookCallback;
                 mouseProc = MouseHookCallback;
-                keyboardHook = SetWindowsHookEx(WH_KEYBOARD_LL, keyboardProc, IntPtr.Zero, 0);
-                mouseHook = SetWindowsHookEx(WH_MOUSE_LL, mouseProc, IntPtr.Zero, 0);
+                // Use module handle for hooks so the OS can call back into this module reliably.
+                IntPtr hInstance = GetModuleHandle(Process.GetCurrentProcess().MainModule.ModuleName);
+                keyboardHook = SetWindowsHookEx(WH_KEYBOARD_LL, keyboardProc, hInstance, 0);
+                mouseHook = SetWindowsHookEx(WH_MOUSE_LL, mouseProc, hInstance, 0);
             }
 
             private IntPtr KeyboardHookCallback(int nCode, IntPtr wParam, IntPtr lParam)
@@ -3087,6 +3109,9 @@ namespace HD2_Helper
 
             [DllImport("user32.dll")]
             private static extern short GetAsyncKeyState(int vKey);
+
+            [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+            private static extern IntPtr GetModuleHandle(string lpModuleName);
 
             [StructLayout(LayoutKind.Explicit, Size = 40)]
             private struct INPUT
